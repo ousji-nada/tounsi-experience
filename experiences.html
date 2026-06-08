@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experiences — Tounsi Experience</title>
+  <meta name="description" content="Browse all authentic Tunisian experiences: dinners, cooking workshops, desert adventures, artisan activities and more." />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- PAGE LOADER -->
+<div id="page-loader" aria-hidden="true">
+  <p class="loader-logo">Tounsi <span>Experience</span></p>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="mainNav" class="transparent" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Tounsi <span>Experience</span></a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="reserver.html" class="nav-cta btn-primary-custom">Reserve</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="nav-mobile" id="mobileMenu" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="experiences.html">Experiences</a>
+  <a href="contact.html">Book Now</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container-custom">
+    <span class="script-label" style="font-size:1.5rem;">Discover Tunisia</span>
+    <h1>All <em class="text-primary fst-italic">Experiences</em></h1>
+    <p style="color:rgba(255,255,255,.7);max-width:500px;margin:1rem auto 0;font-size:1.05rem;">
+      Hand-picked moments crafted by locals who live and breathe Tunisian culture.
+    </p>
+  </div>
+</section>
+
+<!-- EXPERIENCES GRID -->
+<section class="section-pad pattern-bg">
+  <div class="container-custom">
+
+    <!-- Filter Bar -->
+    <div class="filter-bar reveal" role="group" aria-label="Filter experiences by category">
+      <button class="filter-btn active" data-filter="all">
+        <i class="fas fa-th me-1"></i> All
+      </button>
+      <button class="filter-btn" data-filter="food">
+        <i class="fas fa-utensils me-1"></i> Food & Dining
+      </button>
+      <button class="filter-btn" data-filter="cooking">
+        <i class="fas fa-mortar-pestle me-1"></i> Cooking
+      </button>
+      <button class="filter-btn" data-filter="adventure">
+        <i class="fas fa-sun me-1"></i> Adventure
+      </button>
+      <button class="filter-btn" data-filter="craft">
+        <i class="fas fa-paint-brush me-1"></i> Artisan
+      </button>
+      <button class="filter-btn" data-filter="culture">
+        <i class="fas fa-landmark me-1"></i> Culture
+      </button>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="row g-4">
+
+      <!-- 1 – Medina Dinner -->
+      <div class="col-md-6 col-lg-4 reveal reveal-delay-1">
+        <article class="exp-card" data-category="food">
+          <div class="exp-card-img">
+            <img src="rooftop.webp" alt="Medina dinner table" loading="lazy" />
+            <span class="exp-card-badge">Bestseller</span>
+            <button class="exp-card-fav" aria-label="Favourite"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-icon"><i class="fas fa-utensils"></i></div>
+            <h3>Medina Dinner Under the Stars</h3>
+            <p>Dine in a candlelit 17th-century riad courtyard with slow-cooked lamb, ancient spice blends and live oud music filling the jasmine air.</p>
+            <div class="exp-card-meta">
+              <div>
+                <div class="exp-card-price">89€ <span>/ person</span></div>
+                <div class="exp-card-rating"><i class="fas fa-star"></i> 4.97 · 312 reviews</div>
+              </div>
+              <a href="details-diner.html" class="btn-primary-custom" style="padding:.55rem 1.2rem;font-size:.85rem;">View <i class="fas fa-chevron-right ms-1"></i></a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- 2 – Couscous Workshop -->
+      <div class="col-md-6 col-lg-4 reveal reveal-delay-2">
+        <article class="exp-card" data-category="cooking">
+          <div class="exp-card-img">
+            <img src="couscous.jpg" alt="Couscous workshop" loading="lazy" />
+            <span class="exp-card-badge" style="background:var(--clr-olive);">Hands-On</span>
+            <button class="exp-card-fav" aria-label="Favourite"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-icon"><i class="fas fa-mortar-pestle"></i></div>
+            <h3>Couscous Workshop with Fatima</h3>
+            <p>Learn hand-rolling couscous from a third-generation grandmother in her own sun-drenched kitchen in the heart of Kairouan.</p>
+            <div class="exp-card-meta">
+              <div>
+                <div class="exp-card-price">65€ <span>/ person</span></div>
+                <div class="exp-card-rating"><i class="fas fa-star"></i> 4.99 · 185 reviews</div>
+              </div>
+              <a href="details-couscous.html" class="btn-primary-custom" style="padding:.55rem 1.2rem;font-size:.85rem;">View <i class="fas fa-chevron-right ms-1"></i></a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- 3 – Desert Trek -->
+      <div class="col-md-6 col-lg-4 reveal reveal-delay-3">
+        <article class="exp-card" data-category="adventure">
+          <div class="exp-card-img">
+            <img src="sahara.jpg" alt="Sahara desert sunrise" loading="lazy" />
+            <span class="exp-card-badge" style="background:var(--clr-gold);color:var(--clr-dark);">Adventure</span>
+            <button class="exp-card-fav" aria-label="Favourite"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-icon"><i class="fas fa-sun"></i></div>
+            <h3>Sahara Sunrise Desert Trek</h3>
+            <p>Mount your camel before dawn and watch the Sahara ignite in amber. Sleep in a luxury Berber camp beneath a billion stars.</p>
+            <div class="exp-card-meta">
+              <div>
+                <div class="exp-card-price">145€ <span>/ person</span></div>
+                <div class="exp-card-rating"><i class="fas fa-star"></i> 4.95 · 421 reviews</div>
+              </div>
+              <a href="details-desert.html" class="btn-primary-custom" style="padding:.55rem 1.2rem;font-size:.85rem;">View <i class="fas fa-chevron-right ms-1"></i></a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- 4 – Pottery Workshop -->
+      <div class="col-md-6 col-lg-4 reveal reveal-delay-1">
+        <article class="exp-card" data-category="craft">
+          <div class="exp-card-img">
+            <img src="pottery.webp" alt="Pottery workshop Nabeul" loading="lazy" />
+            <span class="exp-card-badge" style="background:#7B5EA7;">Craft</span>
+            <button class="exp-card-fav" aria-label="Favourite"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-icon"><i class="fas fa-paint-brush"></i></div>
+            <h3>Nabeul Pottery Masterclass</h3>
+            <p>Shape, glaze and fire your own Tunisian ceramic bowl under the guidance of a master potter in the Blue City of Nabeul.</p>
+            <div class="exp-card-meta">
+              <div>
+                <div class="exp-card-price">55€ <span>/ person</span></div>
+                <div class="exp-card-rating"><i class="fas fa-star"></i> 4.93 · 97 reviews</div>
+              </div>
+              <a href="reserver.html" class="btn-primary-custom" style="padding:.55rem 1.2rem;font-size:.85rem;">Book <i class="fas fa-chevron-right ms-1"></i></a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- 5 – Medina Walk -->
+      <div class="col-md-6 col-lg-4 reveal reveal-delay-2">
+        <article class="exp-card" data-category="culture">
+          <div class="exp-card-img">
+            <img src="madina.webp" alt="Tunis medina alleyway" loading="lazy" />
+            <span class="exp-card-badge" style="background:var(--clr-olive);">Culture</span>
+            <button class="exp-card-fav" aria-label="Favourite"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-icon"><i class="fas fa-landmark"></i></div>
+            <h3>Secret Medina Walking Tour</h3>
+            <p>Navigate centuries-old souks, hidden hammams and forgotten mosques with a local historian who has lived inside the medina walls all his life.</p>
+            <div class="exp-card-meta">
+              <div>
+                <div class="exp-card-price">35€ <span>/ person</span></div>
+                <div class="exp-card-rating"><i class="fas fa-star"></i> 4.91 · 260 reviews</div>
+              </div>
+              <a href="reserver.html" class="btn-primary-custom" style="padding:.55rem 1.2rem;font-size:.85rem;">Book <i class="fas fa-chevron-right ms-1"></i></a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- 6 – Harissa Making -->
+      <div class="col-md-6 col-lg-4 reveal reveal-delay-3">
+        <article class="exp-card" data-category="cooking">
+          <div class="exp-card-img">
+            <img src="harissa_workshop.jpg" alt="Red chilli peppers for harissa" loading="lazy" />
+            <span class="exp-card-badge">New</span>
+            <button class="exp-card-fav" aria-label="Favourite"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-icon"><i class="fas fa-pepper-hot"></i></div>
+            <h3>Harissa Secrets Workshop</h3>
+            <p>Discover Tunisia's national condiment — roast, peel and blend your own jarred harissa to take home as a spicy edible souvenir.</p>
+            <div class="exp-card-meta">
+              <div>
+                <div class="exp-card-price">48€ <span>/ person</span></div>
+                <div class="exp-card-rating"><i class="fas fa-star"></i> 4.88 · 44 reviews</div>
+              </div>
+              <a href="reserver.html" class="btn-primary-custom" style="padding:.55rem 1.2rem;font-size:.85rem;">Book <i class="fas fa-chevron-right ms-1"></i></a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- 7 – Camel Sunset -->
+      <div class="col-md-6 col-lg-4 reveal reveal-delay-1">
+        <article class="exp-card" data-category="adventure">
+          <div class="exp-card-img">
+            <img src="sunset_camel_rides.jpg" alt="Camel ride sunset" loading="lazy" />
+            <span class="exp-card-badge" style="background:var(--clr-gold);color:var(--clr-dark);">Adventure</span>
+            <button class="exp-card-fav" aria-label="Favourite"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-icon"><i class="fas fa-horse"></i></div>
+            <h3>Sunset Camel Ride, Douz</h3>
+            <p>A gentle one-hour dune ride into the golden hour, followed by mint tea with Berber nomads and traditional desert music by firelight.</p>
+            <div class="exp-card-meta">
+              <div>
+                <div class="exp-card-price">75€ <span>/ person</span></div>
+                <div class="exp-card-rating"><i class="fas fa-star"></i> 4.92 · 178 reviews</div>
+              </div>
+              <a href="reserver.html" class="btn-primary-custom" style="padding:.55rem 1.2rem;font-size:.85rem;">Book <i class="fas fa-chevron-right ms-1"></i></a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- 8 – Sidi Bou Said Art -->
+      <div class="col-md-6 col-lg-4 reveal reveal-delay-2">
+        <article class="exp-card" data-category="craft">
+          <div class="exp-card-img">
+            <img src="water_color_sidibou.jpg" alt="Blue and white Sidi Bou Said" loading="lazy" />
+            <span class="exp-card-badge" style="background:#2980B9;">Art</span>
+            <button class="exp-card-fav" aria-label="Favourite"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-icon"><i class="fas fa-palette"></i></div>
+            <h3>Watercolour in Sidi Bou Said</h3>
+            <p>Paint the iconic blue-and-white village with a local artist. No experience needed — just an open eye and a willing brush.</p>
+            <div class="exp-card-meta">
+              <div>
+                <div class="exp-card-price">60€ <span>/ person</span></div>
+                <div class="exp-card-rating"><i class="fas fa-star"></i> 4.96 · 133 reviews</div>
+              </div>
+              <a href="reserver.html" class="btn-primary-custom" style="padding:.55rem 1.2rem;font-size:.85rem;">Book <i class="fas fa-chevron-right ms-1"></i></a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- 9 – Street Food -->
+      <div class="col-md-6 col-lg-4 reveal reveal-delay-3">
+        <article class="exp-card" data-category="food">
+          <div class="exp-card-img">
+            <img src="street_food.webp" alt="Tunisian street food brik" loading="lazy" />
+            <span class="exp-card-badge">Popular</span>
+            <button class="exp-card-fav" aria-label="Favourite"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-icon"><i class="fas fa-drumstick-bite"></i></div>
+            <h3>Tunis Street Food Safari</h3>
+            <p>Eat your way through 12 iconic Tunisian street foods — brik, fricassée, bambalouni, lablabi — guided by a local foodie obsessive.</p>
+            <div class="exp-card-meta">
+              <div>
+                <div class="exp-card-price">42€ <span>/ person</span></div>
+                <div class="exp-card-rating"><i class="fas fa-star"></i> 4.89 · 207 reviews</div>
+              </div>
+              <a href="reserver.html" class="btn-primary-custom" style="padding:.55rem 1.2rem;font-size:.85rem;">Book <i class="fas fa-chevron-right ms-1"></i></a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+    </div><!-- /row -->
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band section-pad">
+  <div class="container-custom cta-band-content text-center text-white reveal">
+    <span class="script-label" style="font-size:1.4rem;">Can't decide?</span>
+    <h2 class="mb-3">Let Us Build Your Perfect Itinerary</h2>
+    <p class="mb-4" style="opacity:.7;max-width:460px;margin-inline:auto;">Tell us your dates and passions — we'll handcraft a multi-day experience programme just for you.</p>
+    <a href="reserver.html" class="btn-primary-custom btn-gold">Get a Custom Package <i class="fas fa-arrow-right ms-1"></i></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="container-custom">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <a href="index.html" class="footer-logo">Tounsi <span>Experience</span></a>
+          <p class="footer-desc">Tunisia's most trusted platform for authentic local experiences.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-2">
+          <p class="footer-heading">Experiences</p>
+          <ul class="footer-links">
+            <li><a href="details-diner.html">Medina Dinner</a></li>
+            <li><a href="details-couscous.html">Couscous Workshop</a></li>
+            <li><a href="details-desert.html">Desert Trek</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-6 col-lg-2">
+          <p class="footer-heading">Company</p>
+          <ul class="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">How It Works</a></li>
+            <li><a href="#">Become a Host</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4">
+          <p class="footer-heading">Stay Inspired</p>
+          <p style="font-size:.88rem;margin-bottom:1rem;">Get curated stories and early access to new experiences.</p>
+          <div class="d-flex gap-2">
+            <input type="email" placeholder="your@email.com" class="custom-input" style="flex:1;padding:.7rem 1rem;" aria-label="Newsletter email" />
+            <button class="btn-primary-custom" style="padding:.7rem 1.2rem;"><i class="fas fa-paper-plane"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-custom footer-bottom">
+    <span>© 2024 Tounsi Experience. All rights reserved.</span>
+    <span>Made with <i class="fas fa-heart text-primary"></i> in Tunisia · <a href="#">Privacy</a> · <a href="#">Terms</a></span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

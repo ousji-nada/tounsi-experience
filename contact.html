@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — Tounsi Experience</title>
+  <meta name="description" content="Get in touch with Tounsi Experience — questions, partnerships, or just to say hello." />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .contact-hero {
+      background: linear-gradient(135deg, var(--clr-dark) 0%, #2C1810 100%);
+      padding: calc(var(--nav-h) + 5rem) 0 6rem;
+      text-align: center;
+      color: var(--clr-white);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -100px;
+      width: 550px; height: 550px;
+      background: radial-gradient(circle, rgba(192,57,43,.18), transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .contact-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -80px;
+      width: 380px; height: 380px;
+      background: radial-gradient(circle, rgba(230,126,34,.1), transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .contact-hero-content { position: relative; z-index: 1; }
+    .contact-hero h1 { font-size: clamp(2.4rem, 5vw, 4rem); margin-bottom: .75rem; }
+    .contact-hero p  { color: rgba(255,255,255,.65); font-size: 1.1rem; max-width: 460px; margin-inline: auto; }
+
+    .contact-card {
+      background: var(--clr-white);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(232,213,176,.5);
+      text-align: center;
+      transition: var(--transition);
+      height: 100%;
+    }
+    .contact-card:hover { box-shadow: var(--shadow-md); transform: translateY(-6px); }
+    .contact-card-icon {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, var(--clr-primary), #A93226);
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      color: var(--clr-white);
+      margin: 0 auto 1.2rem;
+      box-shadow: 0 6px 20px rgba(192,57,43,.3);
+    }
+    .contact-card h5 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: .5rem; color: var(--clr-dark); }
+    .contact-card p  { color: var(--clr-muted); font-size: .9rem; line-height: 1.6; margin-bottom: .9rem; }
+    .contact-card a  { color: var(--clr-primary); font-weight: 600; font-size: .95rem; transition: color .25s; }
+    .contact-card a:hover { color: #A93226; }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      padding: .55rem 0;
+      border-bottom: 1px solid rgba(232,213,176,.5);
+      font-size: .88rem;
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row .day  { color: var(--clr-muted); }
+    .hours-row .time { font-weight: 600; color: var(--clr-dark); }
+    .hours-row.today .day,
+    .hours-row.today .time { color: var(--clr-primary); }
+    .today-badge {
+      font-size: .7rem;
+      background: rgba(192,57,43,.1);
+      color: var(--clr-primary);
+      border-radius: var(--radius-pill);
+      padding: .1rem .5rem;
+      margin-left: .4rem;
+      font-weight: 700;
+    }
+
+    .map-wrapper {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      height: 420px;
+      background: #e8d5b0;
+    }
+    .map-wrapper iframe { width: 100%; height: 100%; border: none; filter: sepia(20%) contrast(95%); }
+    .map-pin-card {
+      position: absolute;
+      top: 1.5rem; left: 1.5rem;
+      background: var(--clr-white);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.2rem;
+      box-shadow: var(--shadow-md);
+      z-index: 10;
+      max-width: 220px;
+    }
+    .map-pin-card strong { font-family: var(--font-display); font-size: 1rem; display: block; margin-bottom: .25rem; }
+    .map-pin-card span  { font-size: .8rem; color: var(--clr-muted); }
+
+    .social-card {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      background: var(--clr-white);
+      border-radius: var(--radius-md);
+      padding: 1.3rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(232,213,176,.4);
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+    .social-card:hover { box-shadow: var(--shadow-md); transform: translateX(6px); color: inherit; }
+    .social-icon {
+      width: 50px; height: 50px; min-width: 50px;
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      color: var(--clr-white);
+    }
+    .social-icon.ig { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+    .social-icon.fb { background: #1877F2; }
+    .social-icon.wa { background: #25D366; }
+    .social-icon.tt { background: #000; }
+    .social-card-text strong { display: block; font-weight: 700; font-size: .95rem; margin-bottom: .1rem; }
+    .social-card-text span   { font-size: .82rem; color: var(--clr-muted); }
+    .social-arrow { margin-left: auto; color: var(--clr-muted); font-size: .85rem; }
+
+    .faq-item {
+      background: var(--clr-white);
+      border-radius: var(--radius-md);
+      margin-bottom: .75rem;
+      border: 1px solid rgba(232,213,176,.4);
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 1.2rem 1.4rem;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--clr-dark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: color .25s;
+    }
+    .faq-question:hover { color: var(--clr-primary); }
+    .faq-question i { transition: transform .35s ease; color: var(--clr-primary); }
+    .faq-item.open .faq-question i { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s ease, padding .4s ease;
+      padding: 0 1.4rem;
+      font-size: .9rem;
+      color: var(--clr-muted);
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; padding: 0 1.4rem 1.2rem; }
+
+    .cta-section {
+      background: linear-gradient(135deg, var(--clr-dark) 0%, #2C1810 100%);
+      padding: 5rem 0;
+      text-align: center;
+      color: var(--clr-white);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse, rgba(192,57,43,.2), transparent 65%);
+      pointer-events: none;
+    }
+    .cta-section-content { position: relative; z-index: 1; }
+    .cta-section h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+    .cta-section p  { color: rgba(255,255,255,.65); max-width: 460px; margin: 0 auto 2rem; }
+  </style>
+</head>
+<body>
+
+<!-- PAGE LOADER -->
+<div id="page-loader" aria-hidden="true">
+  <p class="loader-logo">Tounsi <span>Experience</span></p>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="mainNav" class="transparent" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Tounsi <span>Experience</span></a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
+      <li><a href="contact.html" class="active">Contact Us</a></li>
+      <li><a href="reserver.html" class="nav-cta btn-primary-custom">Reserve</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="nav-mobile" id="mobileMenu" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="experiences.html">Experiences</a>
+  <a href="contact.html">Contact Us</a>
+  <a href="reserver.html">Reserve</a>
+</nav>
+
+<!-- HERO -->
+<section class="contact-hero">
+  <div class="container-custom contact-hero-content">
+    <span class="script-label reveal" style="font-size:1.4rem;">We'd Love to Hear From You</span>
+    <h1 class="reveal">Get in <em class="text-primary fst-italic">Touch</em></h1>
+    <p class="reveal reveal-delay-1">Questions, partnerships, or just want to say مرحبا — we're always here.</p>
+    <div class="mt-4 reveal reveal-delay-2">
+      <a href="reserver.html" class="btn-primary-custom">
+        <i class="fa-solid fa-calendar-check me-1"></i> Book an Experience
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT CARDS -->
+<section class="section-pad" style="background:var(--clr-bg);">
+  <div class="container-custom">
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3">
+        <div class="contact-card reveal">
+          <div class="contact-card-icon"><i class="fa-solid fa-phone"></i></div>
+          <h5>Call Us</h5>
+          <p>Available Mon–Sat<br>8:00 AM – 8:00 PM</p>
+          <a href="tel:+21671000000">+216 71 000 000</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="contact-card reveal reveal-delay-1">
+          <div class="contact-card-icon"><i class="fa-solid fa-envelope"></i></div>
+          <h5>Email Us</h5>
+          <p>We reply within<br>24 hours</p>
+          <a href="mailto:hello@tounsi-experience.tn">hello@tounsi-experience.tn</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="contact-card reveal reveal-delay-2">
+          <div class="contact-card-icon" style="background:linear-gradient(135deg,#25D366,#128C7E);"><i class="fa-brands fa-whatsapp"></i></div>
+          <h5>WhatsApp</h5>
+          <p>Chat with us anytime —<br>quickest response</p>
+          <a href="https://wa.me/21671000000" target="_blank">Open WhatsApp Chat</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="contact-card reveal reveal-delay-3">
+          <div class="contact-card-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <h5>Find Us</h5>
+          <p>Medina de Tunis<br>Tunis, Tunisia</p>
+          <a href="https://maps.google.com/?q=Medina+Tunis" target="_blank">Open in Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS + SOCIAL -->
+<section class="section-pad" style="background:var(--clr-white); padding-top:0;">
+  <div class="container-custom">
+    <div class="row g-5 align-items-start">
+
+      <!-- Hours -->
+      <div class="col-lg-5 reveal">
+        <span class="script-label">When to find us</span>
+        <h2 style="font-size:2rem;" class="mb-1">Opening <em class="text-primary fst-italic">Hours</em></h2>
+        <div style="width:48px;height:3px;background:var(--clr-primary);border-radius:2px;margin-bottom:1.8rem;"></div>
+        <div class="hours-row" id="row-mon"><span class="day">Monday</span><span class="time">8:00 AM – 8:00 PM</span></div>
+        <div class="hours-row" id="row-tue"><span class="day">Tuesday</span><span class="time">8:00 AM – 8:00 PM</span></div>
+        <div class="hours-row" id="row-wed"><span class="day">Wednesday</span><span class="time">8:00 AM – 8:00 PM</span></div>
+        <div class="hours-row" id="row-thu"><span class="day">Thursday</span><span class="time">8:00 AM – 8:00 PM</span></div>
+        <div class="hours-row" id="row-fri"><span class="day">Friday</span><span class="time">8:00 AM – 8:00 PM</span></div>
+        <div class="hours-row" id="row-sat"><span class="day">Saturday</span><span class="time">9:00 AM – 6:00 PM</span></div>
+        <div class="hours-row" id="row-sun"><span class="day">Sunday</span><span class="time">10:00 AM – 5:00 PM</span></div>
+        <div class="mt-4 p-3 rounded-3" style="background:rgba(192,57,43,.06);border:1px solid rgba(192,57,43,.15);">
+          <p style="font-size:.85rem;color:var(--clr-muted);margin:0;">
+            <i class="fa-solid fa-circle-info me-2" style="color:var(--clr-primary);"></i>
+            Exact host addresses are shared after booking confirmation.
+          </p>
+        </div>
+      </div>
+
+      <!-- Social -->
+      <div class="col-lg-7 reveal reveal-delay-1">
+        <span class="script-label">Follow the journey</span>
+        <h2 style="font-size:2rem;" class="mb-1">Follow <em class="text-primary fst-italic">Us</em></h2>
+        <div style="width:48px;height:3px;background:var(--clr-primary);border-radius:2px;margin-bottom:1.8rem;"></div>
+        <div class="d-flex flex-column gap-3">
+          <a href="https://instagram.com" target="_blank" class="social-card">
+            <div class="social-icon ig"><i class="fa-brands fa-instagram"></i></div>
+            <div class="social-card-text">
+              <strong>@tounsi.experience</strong>
+              <span>Behind-the-scenes, recipes & stories from our hosts</span>
+            </div>
+            <i class="fa-solid fa-arrow-right social-arrow"></i>
+          </a>
+          <a href="https://facebook.com" target="_blank" class="social-card">
+            <div class="social-icon fb"><i class="fa-brands fa-facebook-f"></i></div>
+            <div class="social-card-text">
+              <strong>Tounsi Experience</strong>
+              <span>Events, guest reviews and Tunisian culture</span>
+            </div>
+            <i class="fa-solid fa-arrow-right social-arrow"></i>
+          </a>
+          <a href="https://wa.me/21671000000" target="_blank" class="social-card">
+            <div class="social-icon wa"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="social-card-text">
+              <strong>WhatsApp</strong>
+              <span>Quick questions? Message us directly</span>
+            </div>
+            <i class="fa-solid fa-arrow-right social-arrow"></i>
+          </a>
+          <a href="https://tiktok.com" target="_blank" class="social-card">
+            <div class="social-icon tt"><i class="fa-brands fa-tiktok"></i></div>
+            <div class="social-card-text">
+              <strong>@tounsiexperience</strong>
+              <span>Couscous rolling, medina walks & Sahara sunrises</span>
+            </div>
+            <i class="fa-solid fa-arrow-right social-arrow"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="section-pad" style="background:var(--clr-bg); padding-top:0;">
+  <div class="container-custom">
+    <div class="text-center mb-4 reveal">
+      <span class="script-label">Where to find us</span>
+      <h2 style="font-size:2rem;">Tunis, <em class="text-primary fst-italic">Tunisia</em></h2>
+    </div>
+    <div class="map-wrapper reveal">
+      <div class="map-pin-card">
+        <strong>Tounsi Experience</strong>
+        <span><i class="fa-solid fa-location-dot me-1" style="color:var(--clr-primary);"></i>Medina de Tunis</span>
+      </div>
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=10.1418%2C36.7992%2C10.2018%2C36.8392&layer=mapnik&marker=36.8192%2C10.1718"
+        title="Tunis map" loading="lazy" allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="section-pad" id="contact-form-section" style="background:var(--clr-bg);">
+  <div class="container-custom">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="text-center mb-5 reveal">
+          <span class="script-label">Send us a message</span>
+          <h2 style="font-size:2.2rem;">Contact <em class="text-primary fst-italic">Form</em></h2>
+          <div style="width:48px;height:3px;background:var(--clr-primary);border-radius:2px;margin:1rem auto 0;"></div>
+        </div>
+
+        <!-- Success / Error banners -->
+        <div id="form-success" class="alert alert-success d-none" role="alert" style="border-radius:var(--radius-md);font-weight:600;">
+          <i class="fa-solid fa-circle-check me-2"></i> Votre message a bien été envoyé !
+        </div>
+        <div id="form-error-banner" class="alert alert-danger d-none" role="alert" style="border-radius:var(--radius-md);">
+          <i class="fa-solid fa-circle-exclamation me-2"></i> Veuillez corriger les erreurs ci-dessous avant d'envoyer.
+        </div>
+
+        <div class="reveal" style="background:var(--clr-white);border-radius:var(--radius-lg);padding:2.5rem 2rem;box-shadow:var(--shadow-sm);border:1px solid rgba(232,213,176,.5);">
+          <form id="contactForm" action="traitement.php" method="POST" novalidate>
+
+            <!-- Nom -->
+            <div class="mb-4">
+              <label for="contactNom" class="form-label fw-semibold" style="color:var(--clr-dark);">
+                <i class="fa-solid fa-user me-2" style="color:var(--clr-primary);"></i>Nom complet <span style="color:var(--clr-primary);">*</span>
+              </label>
+              <input
+                type="text"
+                id="contactNom"
+                name="nom"
+                class="form-control"
+                placeholder="Votre nom complet"
+                autocomplete="name"
+                style="border-radius:var(--radius-md);padding:.75rem 1rem;border:1.5px solid rgba(232,213,176,.8);"
+              />
+              <div id="contactNomError" class="error-msg mt-1" style="color:#c0392b;font-size:.85rem;display:none;"></div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-4">
+              <label for="contactEmail" class="form-label fw-semibold" style="color:var(--clr-dark);">
+                <i class="fa-solid fa-envelope me-2" style="color:var(--clr-primary);"></i>Adresse email <span style="color:var(--clr-primary);">*</span>
+              </label>
+              <input
+                type="email"
+                id="contactEmail"
+                name="email"
+                class="form-control"
+                placeholder="votreemail@exemple.com"
+                autocomplete="email"
+                style="border-radius:var(--radius-md);padding:.75rem 1rem;border:1.5px solid rgba(232,213,176,.8);"
+              />
+              <div id="contactEmailError" class="error-msg mt-1" style="color:#c0392b;font-size:.85rem;display:none;"></div>
+            </div>
+
+            <!-- Message -->
+            <div class="mb-4">
+              <label for="contactMessage" class="form-label fw-semibold" style="color:var(--clr-dark);">
+                <i class="fa-solid fa-message me-2" style="color:var(--clr-primary);"></i>Message <span style="color:var(--clr-primary);">*</span>
+              </label>
+              <textarea
+                id="contactMessage"
+                name="message"
+                class="form-control"
+                rows="5"
+                placeholder="Écrivez votre message ici..."
+                style="border-radius:var(--radius-md);padding:.75rem 1rem;border:1.5px solid rgba(232,213,176,.8);resize:vertical;"
+              ></textarea>
+              <div id="contactMessageError" class="error-msg mt-1" style="color:#c0392b;font-size:.85rem;display:none;"></div>
+            </div>
+
+            <button type="submit" class="btn-primary-custom w-100" id="contactSubmitBtn" style="justify-content:center;font-size:1rem;padding:.85rem 1.5rem;">
+              <i class="fa-solid fa-paper-plane me-2"></i> Envoyer le message
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-pad" style="background:var(--clr-white);">
+  <div class="container-custom">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="text-center mb-5 reveal">
+          <span class="script-label">Got questions?</span>
+          <h2 style="font-size:2.2rem;">Frequently Asked <em class="text-primary fst-italic">Questions</em></h2>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question">How do I book an experience? <i class="fa-solid fa-plus"></i></button>
+          <div class="faq-answer">Visit our <a href="reserver.html" style="color:var(--clr-primary);font-weight:600;">Reserve page</a>, pick your experience, choose a date, fill in your details and submit. Your host will confirm within 24 hours.</div>
+        </div>
+        <div class="faq-item reveal reveal-delay-1">
+          <button class="faq-question">Can I cancel or reschedule my booking? <i class="fa-solid fa-plus"></i></button>
+          <div class="faq-answer">Yes — free cancellation or rescheduling is available up to 48 hours before your experience. Contact us by email or WhatsApp and we'll take care of it.</div>
+        </div>
+        <div class="faq-item reveal reveal-delay-2">
+          <button class="faq-question">Are experiences suitable for children? <i class="fa-solid fa-plus"></i></button>
+          <div class="faq-answer">Most experiences welcome families with children aged 8 and above. Some activities like the Sahara ride are recommended for ages 12+. Each experience page lists any age recommendations.</div>
+        </div>
+        <div class="faq-item reveal reveal-delay-3">
+          <button class="faq-question">In what languages are experiences hosted? <i class="fa-solid fa-plus"></i></button>
+          <div class="faq-answer">All experiences are hosted in Tunisian Arabic, with translation available in French and English. You can specify your preference when booking.</div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">Is payment required at the time of booking? <i class="fa-solid fa-plus"></i></button>
+          <div class="faq-answer">No online payment is required. Payment is settled directly with your host on the day, in cash (TND) or by local bank transfer.</div>
+        </div>
+        <div class="faq-item reveal reveal-delay-1">
+          <button class="faq-question">Can I book a private group experience? <i class="fa-solid fa-plus"></i></button>
+          <div class="faq-answer">Absolutely. Private sessions can be arranged for groups of any size. Contact us via email or WhatsApp and we'll build a custom itinerary for you.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container-custom cta-section-content reveal">
+    <span class="script-label" style="color:rgba(255,255,255,.5);">Ready?</span>
+    <h2>Start Your Tunisian <em class="text-primary fst-italic">Adventure</em></h2>
+    <p>From a grandmother's kitchen in Ariana to a sunrise over the Sahara — your story starts with one click.</p>
+    <a href="reserver.html" class="btn-primary-custom me-3">
+      <i class="fa-solid fa-calendar-check me-1"></i> Reserve Now
+    </a>
+    <a href="experiences.html" class="btn-outline-custom" style="color:#fff;border-color:rgba(255,255,255,.35);">
+      Explore Experiences
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="container-custom">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <a href="index.html" class="footer-logo">Tounsi <span>Experience</span></a>
+          <p class="footer-desc">Authentic Tunisian experiences crafted by locals who live and breathe the culture of this beautiful land.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <p class="footer-heading">Explore</p>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="experiences.html">Experiences</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="reserver.html">Reserve</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-3">
+          <p class="footer-heading">Experiences</p>
+          <ul class="footer-links">
+            <li><a href="details-couscous.html">Couscous Workshop</a></li>
+            <li><a href="details-diner.html">Medina Dinner</a></li>
+            <li><a href="experiences.html">Sahara Ride</a></li>
+            <li><a href="experiences.html">Artisan Pottery</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3">
+          <p class="footer-heading">Contact</p>
+          <ul class="footer-links">
+            <li><i class="fa-solid fa-envelope me-2" style="color:var(--clr-primary);"></i>hello@tounsi-experience.tn</li>
+            <li><i class="fa-solid fa-phone me-2" style="color:var(--clr-primary);"></i>+216 71 000 000</li>
+            <li><i class="fa-solid fa-location-dot me-2" style="color:var(--clr-primary);"></i>Medina de Tunis, Tunisia</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-custom">
+    <div class="footer-bottom">
+      <span>© 2025 <strong style="color:var(--clr-secondary);">Tounsi Experience</strong>. All rights reserved.</span>
+      <span>Made with <i class="fa-solid fa-heart" style="color:var(--clr-primary);"></i> in Tunisia</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+<script>
+  /* Highlight today's hours */
+  (function () {
+    const days = ['sun','mon','tue','wed','thu','fri','sat'];
+    const today = days[new Date().getDay()];
+    const row = document.getElementById('row-' + today);
+    if (row) {
+      row.classList.add('today');
+      const badge = document.createElement('span');
+      badge.className = 'today-badge';
+      badge.textContent = 'Today';
+      row.querySelector('.day').appendChild(badge);
+    }
+  })();
+
+  /* FAQ accordion */
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>

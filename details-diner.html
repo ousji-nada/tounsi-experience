@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medina Dinner Under the Stars — Tounsi Experience</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- PAGE LOADER -->
+<div id="page-loader" aria-hidden="true">
+  <p class="loader-logo">Tounsi <span>Experience</span></p>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="mainNav" class="transparent" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Tounsi <span>Experience</span></a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="reserver.html" class="nav-cta btn-primary-custom">Reserve</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<nav class="nav-mobile" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="experiences.html">Experiences</a>
+  <a href="contact.html">Book Now</a>
+</nav>
+
+<!-- DETAIL HERO -->
+<div class="detail-hero" style="margin-top:var(--nav-h);">
+  <img src="medinabg.webp" alt="Candlelit riad dinner courtyard" />
+  <div class="detail-hero-overlay"></div>
+  <div class="detail-hero-content">
+    <span class="hero-tag"><i class="fas fa-utensils me-1"></i> Food & Dining</span>
+    <h1>Medina Dinner Under the Stars</h1>
+    <p style="opacity:.8;font-size:1.05rem;">A candlelit evening inside a living piece of Tunisian history</p>
+  </div>
+</div>
+
+<!-- BREADCRUMB -->
+<div style="background:var(--clr-white);border-bottom:1px solid var(--clr-sand);padding:.9rem 0;">
+  <div class="container-custom">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0" style="font-size:.85rem;">
+        <li class="breadcrumb-item"><a href="index.html" style="color:var(--clr-primary);">Home</a></li>
+        <li class="breadcrumb-item"><a href="experiences.html" style="color:var(--clr-primary);">Experiences</a></li>
+        <li class="breadcrumb-item active" style="color:var(--clr-muted);">Medina Dinner</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<!-- DETAIL BODY -->
+<section class="section-pad" style="background:var(--clr-bg);">
+  <div class="container-custom">
+    <div class="detail-grid">
+
+      <!-- LEFT — Description -->
+      <div>
+        <!-- Quick meta row -->
+        <div class="d-flex flex-wrap gap-3 mb-4 reveal" style="font-size:.88rem;color:var(--clr-muted);">
+          <span><i class="fas fa-clock me-1" style="color:var(--clr-primary);"></i> 3 hours</span>
+          <span><i class="fas fa-users me-1" style="color:var(--clr-primary);"></i> Max 8 guests</span>
+          <span><i class="fas fa-map-marker-alt me-1" style="color:var(--clr-primary);"></i> Tunis Medina</span>
+          <span><i class="fas fa-language me-1" style="color:var(--clr-primary);"></i> French · English · Arabic</span>
+          <span><i class="fas fa-star me-1" style="color:var(--clr-gold);"></i> 4.97 (312 reviews)</span>
+        </div>
+
+        <div class="detail-description reveal">
+          <span class="script-label">The Experience</span>
+          <h2 class="mb-4">Where History Becomes <em class="text-primary fst-italic">Dinner</em></h2>
+
+          <p>Step through an unassuming wooden door in the heart of Tunis' UNESCO-listed medina and find yourself transported into another century. A 17th-century riad courtyard — tilework, jasmine, the sound of an oud drifting from somewhere you can't quite locate — awaits you as your private dining room for the evening.</p>
+
+          <p>Your host, Hédi, descends from a family of master cooks whose recipes predate the Ottoman era. His slow-cooked lamb with preserved lemon and ras el hanout has been passed through four generations without a single written recipe. Tonight, he shares it with you.</p>
+
+          <p>The menu unfolds over five courses: a warm kemia spread of roasted peppers and olive tapenade, silky harissa-spiced soup, the legendary lamb tagine, a selection of Tunisian sweets dripping with orange blossom water, and finishing with the ceremonial three-pour mint tea. Every ingredient is sourced from the same souk Hédi's grandmother visited each morning.</p>
+
+          <p>A local oud player provides the soundtrack. The night sky above the open courtyard provides the ceiling. You provide nothing but your appetite and curiosity.</p>
+        </div>
+
+        <!-- Features -->
+        <div class="features-list reveal">
+          <span class="script-label mt-4">What's Included</span>
+          <ul style="margin-top:1rem;">
+            <li>
+              <div class="feature-icon"><i class="fas fa-wine-glass-alt"></i></div>
+              <div class="feature-text">
+                <strong>Welcome Aperitif</strong>
+                <span>Chilled local wine or pomegranate juice served on arrival</span>
+              </div>
+            </li>
+            <li>
+              <div class="feature-icon"><i class="fas fa-utensils"></i></div>
+              <div class="feature-text">
+                <strong>5-Course Tunisian Feast</strong>
+                <span>Full menu from kemia to dessert, including the signature slow-cooked lamb</span>
+              </div>
+            </li>
+            <li>
+              <div class="feature-icon"><i class="fas fa-music"></i></div>
+              <div class="feature-text">
+                <strong>Live Oud Performance</strong>
+                <span>Traditional Malouf music performed throughout the evening</span>
+              </div>
+            </li>
+            <li>
+              <div class="feature-icon"><i class="fas fa-mug-hot"></i></div>
+              <div class="feature-text">
+                <strong>Ceremonial Mint Tea Ritual</strong>
+                <span>The famous three-pour tea ceremony to close the evening</span>
+              </div>
+            </li>
+            <li>
+              <div class="feature-icon"><i class="fas fa-camera"></i></div>
+              <div class="feature-text">
+                <strong>Guided Photo Moments</strong>
+                <span>Hédi takes you through the most photogenic corners of his medina</span>
+              </div>
+            </li>
+            <li>
+              <div class="feature-icon"><i class="fas fa-gift"></i></div>
+              <div class="feature-text">
+                <strong>Take-Home Spice Mix</strong>
+                <span>A small bag of Hédi's personal ras el hanout blend to recreate the magic at home</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Not included -->
+        <div class="reveal mt-4 p-3" style="background:rgba(192,57,43,.05);border-left:3px solid var(--clr-primary);border-radius:var(--radius-sm);">
+          <p style="font-size:.88rem;margin:0;"><strong>Not included:</strong> Transport to/from the Medina, additional alcoholic beverages beyond the welcome drink, tips (appreciated but never expected).</p>
+        </div>
+
+        <!-- Gallery strip -->
+        <div class="reveal mt-5">
+          <span class="script-label">Gallery</span>
+          <div class="row g-2 mt-2">
+            <div class="col-6 col-md-3">
+              <img src="meal.png" alt="Tunisian food spread" style="border-radius:var(--radius-md);width:100%;aspect-ratio:1;object-fit:cover;" />
+            </div>
+            <div class="col-6 col-md-3">
+              <img src="chorba.jpg" alt="soupe" style="border-radius:var(--radius-md);width:100%;aspect-ratio:1;object-fit:cover;" />
+            </div>
+            <div class="col-6 col-md-3">
+              <img src="tajine.webp" alt="Spices and tagine" style="border-radius:var(--radius-md);width:100%;aspect-ratio:1;object-fit:cover;" />
+            </div>
+            <div class="col-6 col-md-3">
+              <img src="thé.webp" alt="Mint tea pouring" style="border-radius:var(--radius-md);width:100%;aspect-ratio:1;object-fit:cover;" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT — Booking Card -->
+      <aside>
+        <div class="booking-card reveal">
+          <div class="price-big">89€ <span>/ person</span></div>
+          <div class="rating-row">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <span style="font-weight:600;">4.97</span>
+            <span style="color:var(--clr-muted);">(312 reviews)</span>
+          </div>
+
+          <hr class="divider-line" />
+
+          <div class="booking-detail-row"><span class="label"><i class="fas fa-clock me-1"></i>Duration</span><span class="value">~3 hours</span></div>
+          <div class="booking-detail-row"><span class="label"><i class="fas fa-users me-1"></i>Group size</span><span class="value">2–8 guests</span></div>
+          <div class="booking-detail-row"><span class="label"><i class="fas fa-calendar-alt me-1"></i>Available</span><span class="value">Tue – Sun</span></div>
+          <div class="booking-detail-row"><span class="label"><i class="fas fa-map-marker-alt me-1"></i>Location</span><span class="value">Tunis Medina</span></div>
+          <div class="booking-detail-row"><span class="label"><i class="fas fa-language me-1"></i>Languages</span><span class="value">FR / EN / AR</span></div>
+
+          <hr class="divider-line" />
+
+          <a href="reserver.html" class="btn-primary-custom w-100 justify-content-center mb-3">
+            <i class="fas fa-calendar-check me-2"></i> Book This Experience
+          </a>
+          <a href="contact.html" class="btn-outline-custom w-100 justify-content-center" style="font-size:.9rem;">
+            <i class="fas fa-envelope me-2"></i> Ask a Question
+          </a>
+
+          <p style="font-size:.78rem;color:var(--clr-muted);text-align:center;margin-top:1rem;">
+            <i class="fas fa-lock me-1"></i> Free cancellation up to 48h before
+          </p>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="mt-3 p-3 text-center" style="background:var(--clr-white);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);">
+          <p style="font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--clr-muted);margin-bottom:.75rem;">Why book with us</p>
+          <div class="d-flex justify-content-around">
+            <div style="font-size:.78rem;color:var(--clr-muted);text-align:center;">
+              <i class="fas fa-shield-alt fa-lg mb-1 d-block" style="color:var(--clr-primary);"></i>Secure
+            </div>
+            <div style="font-size:.78rem;color:var(--clr-muted);text-align:center;">
+              <i class="fas fa-undo fa-lg mb-1 d-block" style="color:var(--clr-primary);"></i>Free Cancel
+            </div>
+            <div style="font-size:.78rem;color:var(--clr-muted);text-align:center;">
+              <i class="fas fa-headset fa-lg mb-1 d-block" style="color:var(--clr-primary);"></i>24/7 Help
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS for this experience -->
+<section class="section-pad" style="background:var(--clr-white);">
+  <div class="container-custom">
+    <div class="section-heading centered reveal">
+      <span class="eyebrow">Guest Reviews</span>
+      <h2>What People Are Saying</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 reveal reveal-delay-1">
+        <div class="testimonial-card">
+          <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text">"The lamb tagine made me weep. I've eaten in Michelin-starred restaurants across Europe and nothing has moved me the way Hédi's cooking did."</p>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200" alt="Sophie M." class="testimonial-avatar" />
+            <div><div class="testimonial-name">Sophie M.</div><div class="testimonial-origin"><i class="fas fa-map-marker-alt me-1" style="color:var(--clr-primary);"></i>Lyon, France</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 reveal reveal-delay-2">
+        <div class="testimonial-card">
+          <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text">"The madina at night under the stars was absolutely magical. We were a group of four and felt like we had the whole medina to ourselves."</p>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" alt="Marco V." class="testimonial-avatar" />
+            <div><div class="testimonial-name">Marco V.</div><div class="testimonial-origin"><i class="fas fa-map-marker-alt me-1" style="color:var(--clr-primary);"></i>Milan, Italy</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 reveal reveal-delay-3">
+        <div class="testimonial-card">
+          <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text">"I brought my mother for her 70th birthday. Hédi came out and sang happy birthday in three languages. She still talks about it every week."</p>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200" alt="Amira C." class="testimonial-avatar" />
+            <div><div class="testimonial-name">Amira C.</div><div class="testimonial-origin"><i class="fas fa-map-marker-alt me-1" style="color:var(--clr-primary);"></i>Paris, France</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OTHER EXPERIENCES -->
+<section class="section-pad pattern-bg">
+  <div class="container-custom">
+    <div class="section-heading centered reveal">
+      <span class="eyebrow">You May Also Love</span>
+      <h2>More Experiences</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4 reveal reveal-delay-1">
+        <article class="exp-card">
+          <div class="exp-card-img">
+            <img src="https://images.unsplash.com/photo-1547496502-affa22d38842?w=800" alt="Couscous workshop" loading="lazy" />
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-icon"><i class="fas fa-mortar-pestle"></i></div>
+            <h3>Couscous Workshop with Fatima</h3>
+            <p>Master the ancient art of hand-rolling couscous with a grandmother in Kairouan.</p>
+            <div class="exp-card-meta">
+              <div><div class="exp-card-price">65€ <span>/ person</span></div></div>
+              <a href="details-couscous.html" class="btn-primary-custom" style="padding:.55rem 1.2rem;font-size:.85rem;">View <i class="fas fa-chevron-right ms-1"></i></a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal reveal-delay-2">
+        <article class="exp-card">
+          <div class="exp-card-img">
+            <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800" alt="Desert trek" loading="lazy" />
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-icon"><i class="fas fa-sun"></i></div>
+            <h3>Sahara Sunrise Desert Trek</h3>
+            <p>Ride camels into the golden Saharan dawn and camp under a billion stars.</p>
+            <div class="exp-card-meta">
+              <div><div class="exp-card-price">145€ <span>/ person</span></div></div>
+              <a href="details-desert.html" class="btn-primary-custom" style="padding:.55rem 1.2rem;font-size:.85rem;">View <i class="fas fa-chevron-right ms-1"></i></a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal reveal-delay-3">
+        <article class="exp-card">
+          <div class="exp-card-img">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800" alt="Street food" loading="lazy" />
+          </div>
+          <div class="exp-card-body">
+            <div class="exp-card-icon"><i class="fas fa-drumstick-bite"></i></div>
+            <h3>Tunis Street Food Safari</h3>
+            <p>12 iconic Tunisian street foods, one unforgettable foodie walk through old Tunis.</p>
+            <div class="exp-card-meta">
+              <div><div class="exp-card-price">42€ <span>/ person</span></div></div>
+              <a href="contact.html" class="btn-primary-custom" style="padding:.55rem 1.2rem;font-size:.85rem;">Book <i class="fas fa-chevron-right ms-1"></i></a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="container-custom">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <a href="index.html" class="footer-logo">Tounsi <span>Experience</span></a>
+          <p class="footer-desc">Tunisia's most trusted platform for authentic local experiences.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-2">
+          <p class="footer-heading">Experiences</p>
+          <ul class="footer-links">
+            <li><a href="details-diner.html">Medina Dinner</a></li>
+            <li><a href="details-couscous.html">Couscous Workshop</a></li>
+            <li><a href="details-desert.html">Desert Trek</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-6 col-lg-2">
+          <p class="footer-heading">Company</p>
+          <ul class="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">How It Works</a></li>
+            <li><a href="#">Become a Host</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4">
+          <p class="footer-heading">Stay Inspired</p>
+          <p style="font-size:.88rem;margin-bottom:1rem;">Get curated stories and early access to new experiences.</p>
+          <div class="d-flex gap-2">
+            <input type="email" placeholder="your@email.com" class="custom-input" style="flex:1;padding:.7rem 1rem;" aria-label="Newsletter email" />
+            <button class="btn-primary-custom" style="padding:.7rem 1.2rem;"><i class="fas fa-paper-plane"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-custom footer-bottom">
+    <span>© 2024 Tounsi Experience. All rights reserved.</span>
+    <span>Made with <i class="fas fa-heart text-primary"></i> in Tunisia · <a href="#">Privacy</a> · <a href="#">Terms</a></span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

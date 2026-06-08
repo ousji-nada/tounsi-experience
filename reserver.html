@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Réserver — Tounsi Experience</title>
+  <meta name="description" content="Reserve your authentic Tunisian experience — couscous workshops, medina dinners, desert adventures and more." />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ══════════════════════════════════════════════════════
+       VARIABLE BRIDGE — mappe les tokens locaux de reserver.html
+       sur les variables globales définies dans style.css
+       ══════════════════════════════════════════════════════ */
+    :root {
+      --clr-primary:  #C0603A;
+      --clr-dark:     #1A1208;
+      --clr-white:    #FFFFFF;
+      --clr-sand:     #F5EDD8;
+      --clr-bg:       #FAF6EE;
+      --clr-muted:    #8B7355;
+      --clr-gold:     #C9A84C;
+      --clr-success:  #27AE60;
+      --clr-error:    #C0392B;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+      --font-script:  'Dancing Script', cursive;
+
+      --radius-sm:    6px;
+      --radius-md:    14px;
+      --radius-lg:    24px;
+      --radius-pill:  40px;
+
+      --shadow-sm:    0 4px 16px rgba(26,18,8,0.08);
+      --shadow-md:    0 8px 32px rgba(26,18,8,0.12);
+      --shadow-lg:    0 20px 60px rgba(26,18,8,0.22);
+
+      --nav-h:        76px;
+      --transition:   0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* ═══ NAVBAR CUSTOM (reserver.html n'utilise pas Bootstrap navbar) ═══ */
+    #mainNav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(10, 8, 4, 0.93);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: var(--nav-h);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+    }
+    .nav-logo span { color: var(--clr-primary); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      list-style: none;
+      margin: 0; padding: 0;
+    }
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.82);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      transition: color 0.2s;
+      letter-spacing: 0.04em;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 1rem; right: 1rem;
+      height: 1px;
+      background: var(--clr-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a.nav-cta {
+      background: var(--clr-primary) !important;
+      color: #fff !important;
+      border-radius: 40px;
+      padding: 0.45rem 1.4rem;
+      box-shadow: 0 4px 20px rgba(192,96,58,0.4);
+    }
+    .nav-links a.nav-cta::after { display: none; }
+    .nav-links a.nav-cta:hover { background: #9B4A2C !important; transform: translateY(-1px); }
+
+    /* Mobile toggle */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 0.3rem 0.6rem;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px; height: 2px;
+      background: rgba(255,255,255,0.85);
+      margin: 4px 0;
+      border-radius: 99px;
+    }
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: var(--nav-h); left: 0; right: 0;
+      background: rgba(10,8,4,0.97);
+      z-index: 999;
+      flex-direction: column;
+      padding: 1rem 1.5rem 2rem;
+      gap: 0;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      transition: color 0.2s;
+    }
+    .nav-mobile a:last-child { border-bottom: none; }
+    .nav-mobile a:hover { color: var(--clr-sand); }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+    }
+
+    /* ═══ PAGE LOADER ═══ */
+    #page-loader {
+      position: fixed; inset: 0;
+      background: var(--clr-dark);
+      z-index: 9999;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 1.5rem;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #page-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-logo {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      color: var(--clr-sand);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+    }
+    .loader-logo span { color: var(--clr-primary); }
+    .loader-bar { width: 160px; height: 2px; background: rgba(255,255,255,0.1); border-radius: 99px; overflow: hidden; }
+    .loader-fill { height: 100%; background: var(--clr-primary); border-radius: 99px; animation: loaderFill 1.8s ease forwards; }
+    @keyframes loaderFill { from { width: 0% } to { width: 100% } }
+
+    /* ═══ LAYOUT UTILITIES ═══ */
+    .container-custom { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .section-pad { padding: 80px 0; }
+    .script-label { font-family: var(--font-script); color: var(--clr-primary); }
+
+    /* ═══ INPUTS ═══ */
+    .custom-input, .custom-select {
+      width: 100%;
+      border: 1.5px solid rgba(139,115,85,0.25);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--clr-dark);
+      background: var(--clr-bg);
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+    }
+    .custom-input:focus, .custom-select:focus { border-color: var(--clr-primary); background: #fff; }
+    .custom-input.is-invalid, .custom-select.is-invalid { border-color: var(--clr-error) !important; background: #fff5f5; }
+    .custom-input.is-valid,   .custom-select.is-valid   { border-color: var(--clr-success) !important; background: #f5fff8; }
+    .field-error { font-size: 0.8rem; color: var(--clr-error); margin-top: 0.35rem; display: none; align-items: center; gap: 0.3rem; }
+    .field-error.visible { display: flex; }
+
+    /* ═══ BOOKING FORM CARD ═══ */
+    .booking-form {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(139,115,85,0.1);
+    }
+    @media (max-width: 768px) { .booking-form { padding: 1.5rem; } }
+
+    /* ── Contact page extras ── */
+    .contact-hero {
+      background: linear-gradient(135deg, var(--clr-dark) 0%, #2C1810 100%);
+      padding: calc(var(--nav-h) + 4rem) 0 5rem;
+      text-align: center;
+      color: var(--clr-white);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -80px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(192,57,43,.2), transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .contact-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(230,126,34,.12), transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .contact-hero-content { position: relative; z-index: 1; }
+    .contact-hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); margin-bottom: .75rem; }
+    .contact-hero p  { color: rgba(255,255,255,.7); font-size: 1.05rem; max-width: 480px; margin-inline: auto; }
+
+    /* ── Info cards ── */
+    .info-card {
+      background: var(--clr-white);
+      border-radius: var(--radius-md);
+      padding: 1.6rem 1.4rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(232,213,176,.5);
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: var(--transition);
+      height: 100%;
+    }
+    .info-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .info-card-icon {
+      width: 48px; height: 48px;
+      min-width: 48px;
+      background: linear-gradient(135deg, var(--clr-primary), #A93226);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--clr-white);
+      font-size: 1.1rem;
+    }
+    .info-card h6 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: .2rem;
+      color: var(--clr-dark);
+    }
+    .info-card p { font-size: .85rem; color: var(--clr-muted); margin: 0; line-height: 1.5; }
+
+    /* ── Form section layout ── */
+    .form-section { background: var(--clr-bg); }
+
+    /* ── Step indicator ── */
+    .form-steps {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 2.5rem;
+    }
+    .form-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .35rem;
+      flex: 1;
+      position: relative;
+    }
+    .form-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: 55%;
+      width: calc(100% - 10%);
+      height: 2px;
+      background: var(--clr-sand);
+      z-index: 0;
+    }
+    .step-circle {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--clr-sand);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700;
+      font-size: .85rem;
+      color: var(--clr-muted);
+      position: relative;
+      z-index: 1;
+      transition: var(--transition);
+    }
+    .form-step.active .step-circle,
+    .form-step.done .step-circle {
+      background: var(--clr-primary);
+      color: var(--clr-white);
+    }
+    .step-label {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--clr-muted);
+    }
+    .form-step.active .step-label { color: var(--clr-primary); }
+
+    /* ── Fieldsets inside form ── */
+    .form-panel {
+      display: none;
+    }
+    .form-panel.active { display: block; }
+
+    /* ── Guests stepper ── */
+    .guest-stepper {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .stepper-btn {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      border: 2px solid var(--clr-sand);
+      background: transparent;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--clr-dark);
+      transition: var(--transition);
+    }
+    .stepper-btn:hover { border-color: var(--clr-primary); color: var(--clr-primary); }
+    .stepper-count {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      min-width: 2rem;
+      text-align: center;
+      color: var(--clr-dark);
+    }
+
+    /* ── Experience selector cards ── */
+    .exp-selector {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: .5rem;
+    }
+    .exp-option {
+      border: 2px solid var(--clr-sand);
+      border-radius: var(--radius-md);
+      padding: 1.1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+    }
+    .exp-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .exp-option:hover { border-color: var(--clr-primary); }
+    .exp-option.selected {
+      border-color: var(--clr-primary);
+      background: rgba(192,57,43,.05);
+    }
+    .exp-option.selected::after {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      top: .6rem; right: .8rem;
+      color: var(--clr-primary);
+      font-size: .8rem;
+    }
+    .exp-option-icon { font-size: 1.4rem; margin-bottom: .4rem; }
+    .exp-option-name { font-weight: 700; font-size: .9rem; color: var(--clr-dark); }
+    .exp-option-price { font-size: .8rem; color: var(--clr-primary); font-weight: 600; margin-top: .15rem; }
+    .exp-option-duration { font-size: .75rem; color: var(--clr-muted); }
+
+    /* ── Date picker ── */
+    input[type="date"].custom-input {
+      cursor: pointer;
+    }
+
+    /* ── Extras checkboxes ── */
+    .extras-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: .75rem;
+      margin-top: .5rem;
+    }
+    .extra-pill {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .7rem 1rem;
+      border: 1.5px solid var(--clr-sand);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: .87rem;
+      font-weight: 500;
+    }
+    .extra-pill input { display: none; }
+    .extra-pill:hover { border-color: var(--clr-primary); }
+    .extra-pill:has(input:checked) {
+      background: rgba(192,57,43,.06);
+      border-color: var(--clr-primary);
+      color: var(--clr-primary);
+    }
+    .extra-pill i { font-size: .95rem; color: var(--clr-primary); }
+
+    /* ── Summary sidebar ── */
+    .booking-summary {
+      background: var(--clr-white);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(232,213,176,.5);
+      position: sticky;
+      top: calc(var(--nav-h) + 1.5rem);
+    }
+    .summary-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      padding-bottom: .8rem;
+      border-bottom: 2px solid var(--clr-sand);
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .88rem;
+      padding: .45rem 0;
+      color: var(--clr-muted);
+      border-bottom: 1px solid rgba(232,213,176,.4);
+    }
+    .summary-row:last-of-type { border-bottom: none; }
+    .summary-row strong { color: var(--clr-dark); font-weight: 600; }
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 2px solid var(--clr-sand);
+      font-family: var(--font-display);
+      font-weight: 700;
+    }
+    .summary-total-label { font-size: 1rem; }
+    .summary-total-price { font-size: 1.5rem; color: var(--clr-primary); }
+    .summary-empty {
+      text-align: center;
+      color: var(--clr-muted);
+      font-size: .88rem;
+      padding: 1.5rem 0;
+    }
+    .summary-empty i { display: block; font-size: 2rem; margin-bottom: .5rem; color: var(--clr-sand); }
+    .summary-badge {
+      background: rgba(192,57,43,.08);
+      color: var(--clr-primary);
+      border-radius: var(--radius-pill);
+      font-size: .75rem;
+      font-weight: 600;
+      padding: .2rem .7rem;
+    }
+
+    /* ── Nav buttons ── */
+    .form-nav-btns {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--clr-sand);
+    }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: none;
+      border: none;
+      color: var(--clr-muted);
+      font-weight: 600;
+      font-size: .9rem;
+      cursor: pointer;
+      transition: color .25s;
+      padding: .7rem 1rem;
+    }
+    .btn-back:hover { color: var(--clr-dark); }
+
+    /* ── Modal override for success ── */
+    .modal-box {
+      position: relative;
+      box-shadow: var(--shadow-lg);
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: var(--clr-muted);
+      transition: color .25s;
+    }
+    .modal-close:hover { color: var(--clr-dark); }
+    .modal-ref {
+      display: inline-block;
+      background: rgba(192,57,43,.08);
+      border: 1px solid rgba(192,57,43,.2);
+      border-radius: var(--radius-pill);
+      padding: .35rem 1.2rem;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--clr-primary);
+      letter-spacing: .06em;
+      margin-bottom: 1.5rem;
+    }
+    .modal-details-list {
+      background: var(--clr-bg);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.2rem;
+      text-align: left;
+      margin-bottom: 1.5rem;
+    }
+    .modal-details-list li {
+      font-size: .85rem;
+      color: var(--clr-muted);
+      padding: .3rem 0;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .modal-details-list li i { color: var(--clr-primary); width: 14px; }
+    .modal-details-list li strong { color: var(--clr-dark); }
+
+    /* ── Trust strip ── */
+    .trust-strip {
+      background: var(--clr-white);
+      border-top: 1px solid rgba(232,213,176,.5);
+      border-bottom: 1px solid rgba(232,213,176,.5);
+      padding: 2.5rem 0;
+    }
+    .trust-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: .4rem;
+    }
+    .trust-item i { font-size: 1.5rem; color: var(--clr-primary); }
+    .trust-item strong { font-size: .9rem; font-family: var(--font-display); }
+    .trust-item span { font-size: .78rem; color: var(--clr-muted); }
+
+    @media (max-width: 991px) {
+      .booking-summary { position: static; margin-bottom: 2rem; }
+      .exp-selector { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 576px) {
+      .exp-selector { grid-template-columns: 1fr; }
+      .extras-grid  { grid-template-columns: 1fr; }
+      .form-steps   { gap: 0; }
+      .step-label   { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ PAGE LOADER -->
+<div id="page-loader" aria-hidden="true">
+  <p class="loader-logo">Tounsi <span>Experience</span></p>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════ NAVBAR -->
+<nav id="mainNav" class="scrolled" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Tounsi <span>Experience</span></a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="reserver.html" class="nav-cta btn-primary-custom active">Reserve</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="nav-mobile" id="mobileMenu" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="experiences.html">Experiences</a>
+  <a href="contact.html">Contact Us</a>
+  <a href="reserver.html">Reserve</a>
+</nav>
+
+<!-- ═══════════════════════════════════════ HERO -->
+<section class="contact-hero">
+  <div class="container-custom contact-hero-content reveal">
+    <span class="script-label" style="font-size:1.4rem;">Your Journey Awaits</span>
+    <h1>Book Your <em class="text-primary fst-italic">Experience</em></h1>
+    <p>Reserve in minutes. A local host will confirm your booking within 24 hours.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ TRUST STRIP -->
+<div class="trust-strip">
+  <div class="container-custom">
+    <div class="row g-4 justify-content-center">
+      <div class="col-6 col-md-3">
+        <div class="trust-item reveal">
+          <i class="fa-solid fa-shield-halved"></i>
+          <strong>Free Cancellation</strong>
+          <span>Up to 48h before</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="trust-item reveal reveal-delay-1">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <strong>24h Confirmation</strong>
+          <span>Quick host response</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="trust-item reveal reveal-delay-2">
+          <i class="fa-solid fa-users"></i>
+          <strong>Small Groups</strong>
+          <span>Intimate & personal</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="trust-item reveal reveal-delay-3">
+          <i class="fa-solid fa-star"></i>
+          <strong>4.9 / 5 Rating</strong>
+          <span>From 600+ guests</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ INFO CARDS -->
+<section class="section-pad form-section" style="padding-bottom:0;">
+  <div class="container-custom">
+    <div class="row g-3 mb-5">
+      <div class="col-md-4">
+        <div class="info-card reveal">
+          <div class="info-card-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <h6>Where We Meet</h6>
+            <p>In the heart of Tunis — exact location shared after booking confirmation.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="info-card reveal reveal-delay-1">
+          <div class="info-card-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div>
+            <h6>Contact Us</h6>
+            <p>hello@tounsi-experience.tn<br>+216 71 000 000</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="info-card reveal reveal-delay-2">
+          <div class="info-card-icon"><i class="fa-solid fa-calendar-days"></i></div>
+          <div>
+            <h6>Opening Hours</h6>
+            <p>Mon–Sat: 8:00 AM – 8:00 PM<br>Sunday: 10:00 AM – 5:00 PM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ BOOKING FORM -->
+<section class="section-pad form-section">
+  <div class="container-custom">
+    <div class="row g-5 align-items-start">
+
+      <!-- FORM COLUMN -->
+      <div class="col-lg-7">
+        <div class="booking-form reveal">
+
+          <!-- Step indicator -->
+          <div class="form-steps mb-4" id="formSteps">
+            <div class="form-step active" data-step="1">
+              <div class="step-circle">1</div>
+              <span class="step-label">Experience</span>
+            </div>
+            <div class="form-step" data-step="2">
+              <div class="step-circle">2</div>
+              <span class="step-label">Details</span>
+            </div>
+            <div class="form-step" data-step="3">
+              <div class="step-circle">3</div>
+              <span class="step-label">Your Info</span>
+            </div>
+          </div>
+
+          <form id="bookingForm" novalidate>
+
+            <!-- ── PANEL 1: Choose Experience ── -->
+            <div class="form-panel active" id="panel1">
+              <fieldset class="form-fieldset">
+                <legend class="form-legend"><i class="fa-solid fa-compass"></i> Choose Your Experience</legend>
+
+                <div class="exp-selector" id="expSelector">
+                  <div class="exp-option" data-value="couscous" data-price="65" data-duration="4–5h">
+                    <input type="radio" name="experience" value="couscous" />
+                    <div class="exp-option-icon">🫙</div>
+                    <div class="exp-option-name">Couscous Workshop</div>
+                    <div class="exp-option-price">65€ / person</div>
+                    <div class="exp-option-duration"><i class="fa-regular fa-clock fa-xs"></i> 4–5 hours</div>
+                  </div>
+                  <div class="exp-option" data-value="dinner" data-price="95" data-duration="3h">
+                    <input type="radio" name="experience" value="dinner" />
+                    <div class="exp-option-icon">🕯️</div>
+                    <div class="exp-option-name">Medina Dinner</div>
+                    <div class="exp-option-price">145€ / person</div>
+                    <div class="exp-option-duration"><i class="fa-regular fa-clock fa-xs"></i> 3 hours</div>
+                  </div>
+                  <div class="exp-option" data-value="desert" data-price="185" data-duration="Full day">
+                    <input type="radio" name="experience" value="desert" />
+                    <div class="exp-option-icon">🐪</div>
+                    <div class="exp-option-name">Sahara Dawn Ride</div>
+                    <div class="exp-option-price">145€ / person</div>
+                    <div class="exp-option-duration"><i class="fa-regular fa-clock fa-xs"></i> Full day</div>
+                  </div>
+                  <div class="exp-option" data-value="pottery" data-price="55" data-duration="2–3h">
+                    <input type="radio" name="experience" value="pottery" />
+                    <div class="exp-option-icon">🏺</div>
+                    <div class="exp-option-name">Artisan Pottery</div>
+                    <div class="exp-option-price">55€ / person</div>
+                    <div class="exp-option-duration"><i class="fa-regular fa-clock fa-xs"></i> 2–3 hours</div>
+                  </div>
+                  <div class="exp-option" data-value="hammam" data-price="70" data-duration="2h">
+                    <input type="radio" name="experience" value="hammam" />
+                    <div class="exp-option-icon">🫧</div>
+                    <div class="exp-option-name">Traditional Hammam</div>
+                    <div class="exp-option-price">35€/ person</div>
+                    <div class="exp-option-duration"><i class="fa-regular fa-clock fa-xs"></i> 2 hours</div>
+                  </div>
+                  <div class="exp-option" data-value="medina" data-price="45" data-duration="3h">
+                    <input type="radio" name="experience" value="medina" />
+                    <div class="exp-option-icon">🧭</div>
+                    <div class="exp-option-name">Medina Walking Tour</div>
+                    <div class="exp-option-price">45€/ person</div>
+                    <div class="exp-option-duration"><i class="fa-regular fa-clock fa-xs"></i> 3 hours</div>
+                  </div>
+                </div>
+                <div class="error-msg" id="experienceError"><i class="fas fa-exclamation-circle"></i> Please select an experience.</div>
+              </fieldset>
+
+              <fieldset class="form-fieldset">
+                <legend class="form-legend"><i class="fa-solid fa-users"></i> Number of Guests</legend>
+                <div class="guest-stepper">
+                  <button type="button" class="stepper-btn" id="guestMinus" aria-label="Remove guest">−</button>
+                  <div class="stepper-count" id="guestCount">2</div>
+                  <button type="button" class="stepper-btn" id="guestPlus" aria-label="Add guest">+</button>
+                  <span style="color:var(--clr-muted);font-size:.85rem;margin-left:.5rem;">guests (max 8)</span>
+                </div>
+              </fieldset>
+
+              <fieldset class="form-fieldset">
+                <legend class="form-legend"><i class="fa-solid fa-calendar-days"></i> Preferred Date</legend>
+                <div class="row g-3">
+                  <div class="col-sm-7">
+                    <label class="custom-label" for="bookDate">Date *</label>
+                    <input type="date" id="bookDate" class="custom-input" required />
+                    <div class="error-msg" id="bookDateError"></div>
+                  </div>
+                  <div class="col-sm-5">
+                    <label class="custom-label" for="bookTime">Time Slot</label>
+                    <select id="bookTime" class="custom-input">
+                      <option value="">Any time</option>
+                      <option value="morning">Morning (9:00 AM)</option>
+                      <option value="afternoon">Afternoon (2:00 PM)</option>
+                      <option value="evening">Evening (6:00 PM)</option>
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div class="form-nav-btns" style="justify-content:flex-end;">
+                <button type="button" class="btn-primary-custom" id="toStep2">
+                  Continue <i class="fa-solid fa-arrow-right ms-1"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- ── PANEL 2: Trip Details ── -->
+            <div class="form-panel" id="panel2">
+              <fieldset class="form-fieldset">
+                <legend class="form-legend"><i class="fa-solid fa-person-walking-luggage"></i> Trip Type</legend>
+                <div class="radio-group">
+                  <label class="radio-pill"><input type="radio" name="tripType" value="solo" /> <i class="fa-solid fa-user fa-sm"></i> Solo</label>
+                  <label class="radio-pill"><input type="radio" name="tripType" value="couple" /> <i class="fa-solid fa-heart fa-sm"></i> Couple</label>
+                  <label class="radio-pill"><input type="radio" name="tripType" value="family" /> <i class="fa-solid fa-house fa-sm"></i> Family</label>
+                  <label class="radio-pill"><input type="radio" name="tripType" value="friends" /> <i class="fa-solid fa-people-group fa-sm"></i> Friends</label>
+                  <label class="radio-pill"><input type="radio" name="tripType" value="corporate" /> <i class="fa-solid fa-briefcase fa-sm"></i> Corporate</label>
+                </div>
+                <div class="error-msg" id="tripTypeError"><i class="fas fa-exclamation-circle"></i> Please select a trip type.</div>
+              </fieldset>
+
+              <fieldset class="form-fieldset">
+                <legend class="form-legend"><i class="fa-solid fa-gift"></i> Optional Extras</legend>
+                <div class="extras-grid">
+                  <label class="extra-pill"><input type="checkbox" name="extras" value="transfer" /> <i class="fa-solid fa-car-side"></i> Airport Transfer</label>
+                  <label class="extra-pill"><input type="checkbox" name="extras" value="photo" /> <i class="fa-solid fa-camera"></i> Photo Package</label>
+                  <label class="extra-pill"><input type="checkbox" name="extras" value="gift" /> <i class="fa-solid fa-box-open"></i> Welcome Gift</label>
+                  <label class="extra-pill"><input type="checkbox" name="extras" value="vege" /> <i class="fa-solid fa-leaf"></i> Vegetarian Menu</label>
+                  <label class="extra-pill"><input type="checkbox" name="extras" value="private" /> <i class="fa-solid fa-lock"></i> Private Session</label>
+                  <label class="extra-pill"><input type="checkbox" name="extras" value="guide" /> <i class="fa-solid fa-map"></i> English Guide</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="form-fieldset mb-0">
+                <legend class="form-legend"><i class="fa-solid fa-comment-dots"></i> Special Requests</legend>
+                <label class="custom-label" for="message">Anything we should know?</label>
+                <textarea id="message" name="message" class="custom-input" rows="3" placeholder="Dietary restrictions, special occasions, accessibility needs…"></textarea>
+                <div class="error-msg" id="messageError"></div>
+              </fieldset>
+
+              <div class="form-nav-btns">
+                <button type="button" class="btn-back" id="toStep1"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                <button type="button" class="btn-primary-custom" id="toStep3">
+                  Continue <i class="fa-solid fa-arrow-right ms-1"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- ── PANEL 3: Your Info ── -->
+            <div class="form-panel" id="panel3">
+              <fieldset class="form-fieldset">
+                <legend class="form-legend"><i class="fa-solid fa-circle-user"></i> Your Information</legend>
+                <div class="row g-3">
+                  <div class="col-sm-6">
+                    <label class="custom-label" for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" class="custom-input" placeholder="Fatima Ben Ali" required />
+                    <div class="error-msg" id="fullNameError"></div>
+                  </div>
+                  <div class="col-sm-6">
+                    <label class="custom-label" for="age">Age *</label>
+                    <input type="number" id="age" class="custom-input" placeholder="28" min="18" max="99" required />
+                    <div class="error-msg" id="ageError"></div>
+                  </div>
+                  <div class="col-sm-6">
+                    <label class="custom-label" for="email">Email Address *</label>
+                    <input type="email" id="email" class="custom-input" placeholder="you@example.com" required />
+                    <div class="error-msg" id="emailError"></div>
+                  </div>
+                  <div class="col-sm-6">
+                    <label class="custom-label" for="phone">Phone Number</label>
+                    <input type="tel" id="phone" class="custom-input" placeholder="+216 00 000 000" />
+                  </div>
+                  <div class="col-12">
+                    <label class="custom-label" for="country">Country of Origin</label>
+                    <input type="text" id="country" class="custom-input" placeholder="e.g. Tunisia, France, UK…" />
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="form-fieldset mb-0">
+                <legend class="form-legend"><i class="fa-solid fa-language"></i> Language Preference</legend>
+                <div class="radio-group">
+                  <label class="radio-pill"><input type="radio" name="language" value="en" checked /> 🇬🇧 English</label>
+                  <label class="radio-pill"><input type="radio" name="language" value="fr" /> 🇫🇷 French</label>
+                  <label class="radio-pill"><input type="radio" name="language" value="ar" /> 🇹🇳 Arabic</label>
+                </div>
+              </fieldset>
+
+              <div class="form-nav-btns">
+                <button type="button" class="btn-back" id="toStep2b"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                <button type="submit" class="btn-primary-custom btn-gold">
+                  <i class="fa-solid fa-check me-1"></i> Confirm Reservation
+                </button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- SUMMARY SIDEBAR -->
+      <div class="col-lg-5">
+        <div class="booking-summary reveal reveal-delay-1">
+          <div class="summary-title"><i class="fa-solid fa-receipt me-2" style="color:var(--clr-primary);"></i>Booking Summary</div>
+
+          <div id="summaryEmpty" class="summary-empty">
+            <i class="fa-regular fa-calendar-xmark"></i>
+            Select an experience to see your summary here.
+          </div>
+
+          <div id="summaryContent" style="display:none;">
+            <div class="summary-row"><span>Experience</span><strong id="sumExp">—</strong></div>
+            <div class="summary-row"><span>Date</span><strong id="sumDate">—</strong></div>
+            <div class="summary-row"><span>Time</span><strong id="sumTime">—</strong></div>
+            <div class="summary-row"><span>Guests</span><strong id="sumGuests">2</strong></div>
+            <div class="summary-row"><span>Trip type</span><strong id="sumTrip">—</strong></div>
+            <div class="summary-row"><span>Price / person</span><strong id="sumPrice">—</strong></div>
+            <div id="extrasRow" class="summary-row" style="display:none;"><span>Extras</span><strong id="sumExtras">—</strong></div>
+            <div class="summary-total">
+              <span class="summary-total-label">Total</span>
+              <span class="summary-total-price" id="sumTotal">—</span>
+            </div>
+          </div>
+
+          <div class="mt-3" style="font-size:.78rem;color:var(--clr-muted);display:flex;align-items:flex-start;gap:.5rem;">
+            <i class="fa-solid fa-shield-halved mt-1" style="color:#27AE60;"></i>
+            <span>Free cancellation up to 48 hours before the experience. No payment required now.</span>
+          </div>
+
+          <!-- What to expect -->
+          <div class="mt-4 pt-3" style="border-top:1px solid var(--clr-sand);">
+            <p style="font-family:var(--font-display);font-size:.95rem;font-weight:700;margin-bottom:.8rem;">What happens next?</p>
+            <ul style="font-size:.83rem;color:var(--clr-muted);display:flex;flex-direction:column;gap:.55rem;">
+              <li style="display:flex;gap:.6rem;"><i class="fa-solid fa-envelope mt-1" style="color:var(--clr-primary);width:14px;"></i> You'll receive a confirmation email within 24 hours.</li>
+              <li style="display:flex;gap:.6rem;"><i class="fa-solid fa-phone mt-1" style="color:var(--clr-primary);width:14px;"></i> Your host will call to finalise details.</li>
+              <li style="display:flex;gap:.6rem;"><i class="fa-solid fa-location-dot mt-1" style="color:var(--clr-primary);width:14px;"></i> Meeting point instructions sent 48h before.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ SUCCESS MODAL -->
+<div class="modal-overlay" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-icon"><i class="fa-solid fa-check"></i></div>
+    <h3 id="modalTitle">Reservation Received!</h3>
+    <div class="modal-ref" id="modalRef">REF: TNS-XXXXXX</div>
+    <ul class="modal-details-list" id="modalDetails">
+      <!-- filled by JS -->
+    </ul>
+    <p>Your host will confirm within 24 hours.<br>Check your inbox for a summary email.</p>
+    <a href="experiences.html" class="btn-primary-custom w-100 justify-content-center">
+      <i class="fa-solid fa-compass me-1"></i> Explore More Experiences
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="container-custom">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <a href="index.html" class="footer-logo">Tounsi <span>Experience</span></a>
+          <p class="footer-desc">Authentic Tunisian experiences crafted by locals who live and breathe the culture of this beautiful land.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <p class="footer-heading">Explore</p>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="experiences.html">Experiences</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="reserver.html">Reserve</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-3">
+          <p class="footer-heading">Experiences</p>
+          <ul class="footer-links">
+            <li><a href="details-couscous.html">Couscous Workshop</a></li>
+            <li><a href="details-diner.html">Medina Dinner</a></li>
+            <li><a href="experiences.html">Sahara Ride</a></li>
+            <li><a href="experiences.html">Artisan Pottery</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3">
+          <p class="footer-heading">Contact</p>
+          <ul class="footer-links">
+            <li><i class="fa-solid fa-envelope me-2" style="color:var(--clr-primary);"></i>hello@tounsi-experience.tn</li>
+            <li><i class="fa-solid fa-phone me-2" style="color:var(--clr-primary);"></i>+216 71 000 000</li>
+            <li><i class="fa-solid fa-location-dot me-2" style="color:var(--clr-primary);"></i>Tunis, Tunisia</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-custom">
+    <div class="footer-bottom">
+      <span>© 2025 <strong style="color:var(--clr-secondary);">Tounsi Experience</strong>. All rights reserved.</span>
+      <span>Made with <i class="fa-solid fa-heart" style="color:var(--clr-primary);"></i> in Tunisia</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+
+<script>
+/* ── Contact page specific JS ── */
+(function () {
+
+  /* ── Experiences data ── */
+  const EXP_NAMES = {
+    couscous: "Grandmother's Couscous Workshop",
+    dinner:   "Candlelit Medina Dinner",
+    desert:   "Sahara Dawn Camel Ride",
+    pottery:  "Artisan Pottery Class",
+    hammam:   "Traditional Hammam",
+    medina:   "Medina Walking Tour",
+  };
+
+  /* ── State ── */
+  let state = {
+    experience: null,
+    pricePerPerson: 0,
+    guests: 2,
+    date: '',
+    time: '',
+    tripType: '',
+    extras: [],
+    currentStep: 1,
+  };
+
+  /* ── Step navigation ── */
+  function goTo(step) {
+    document.querySelectorAll('.form-panel').forEach((p, i) => {
+      p.classList.toggle('active', i + 1 === step);
+    });
+    document.querySelectorAll('.form-step').forEach((s, i) => {
+      s.classList.remove('active', 'done');
+      if (i + 1 < step)  s.classList.add('done');
+      if (i + 1 === step) s.classList.add('active');
+    });
+    // update done circles to checkmark
+    document.querySelectorAll('.form-step.done .step-circle').forEach(c => {
+      c.innerHTML = '<i class="fa-solid fa-check" style="font-size:.7rem;"></i>';
+    });
+    state.currentStep = step;
+    window.scrollTo({ top: document.querySelector('.booking-form').offsetTop - 120, behavior: 'smooth' });
+  }
+
+  document.getElementById('toStep2').addEventListener('click', () => {
+    // validate panel 1
+    if (!state.experience) {
+      document.getElementById('experienceError').classList.add('visible');
+      return;
+    }
+    if (!document.getElementById('bookDate').value) {
+      document.getElementById('bookDateError').textContent = '';
+      document.getElementById('bookDateError').innerHTML = '<i class="fas fa-exclamation-circle"></i> Please pick a date.';
+      document.getElementById('bookDateError').classList.add('visible');
+      return;
+    }
+    goTo(2);
+  });
+
+  document.getElementById('toStep1').addEventListener('click', () => goTo(1));
+  document.getElementById('toStep3').addEventListener('click', () => {
+    const tripChecked = document.querySelector('input[name="tripType"]:checked');
+    if (!tripChecked) {
+      document.getElementById('tripTypeError').classList.add('visible');
+      return;
+    }
+    state.tripType = tripChecked.value;
+    state.extras = [...document.querySelectorAll('input[name="extras"]:checked')].map(c => c.value);
+    goTo(3);
+  });
+  document.getElementById('toStep2b').addEventListener('click', () => goTo(2));
+
+  /* ── Experience selector ── */
+  document.querySelectorAll('.exp-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      document.querySelectorAll('.exp-option').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      opt.querySelector('input').checked = true;
+      state.experience = opt.dataset.value;
+      state.pricePerPerson = parseInt(opt.dataset.price);
+      document.getElementById('experienceError').classList.remove('visible');
+      updateSummary();
+    });
+  });
+
+  /* ── Guest stepper ── */
+  document.getElementById('guestMinus').addEventListener('click', () => {
+    if (state.guests > 1) { state.guests--; updateGuestDisplay(); updateSummary(); }
+  });
+  document.getElementById('guestPlus').addEventListener('click', () => {
+    if (state.guests < 8) { state.guests++; updateGuestDisplay(); updateSummary(); }
+  });
+  function updateGuestDisplay() {
+    document.getElementById('guestCount').textContent = state.guests;
+  }
+
+  /* ── Date / time ── */
+  document.getElementById('bookDate').addEventListener('change', function() {
+    state.date = this.value;
+    document.getElementById('bookDateError').classList.remove('visible');
+    updateSummary();
+  });
+  document.getElementById('bookTime').addEventListener('change', function() {
+    state.time = this.value;
+    updateSummary();
+  });
+
+  /* ── Trip type (live update) ── */
+  document.querySelectorAll('input[name="tripType"]').forEach(r => {
+    r.addEventListener('change', function() {
+      state.tripType = this.value;
+      document.getElementById('tripTypeError').classList.remove('visible');
+      updateSummary();
+    });
+  });
+
+  /* ── Extras (live update) ── */
+  document.querySelectorAll('input[name="extras"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      state.extras = [...document.querySelectorAll('input[name="extras"]:checked')].map(c => c.value);
+      updateSummary();
+    });
+  });
+
+  /* ── Minimum date = today ── */
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('bookDate').min = today;
+
+  /* ── Summary update ── */
+  function updateSummary() {
+    const empty   = document.getElementById('summaryEmpty');
+    const content = document.getElementById('summaryContent');
+    if (!state.experience) { empty.style.display = ''; content.style.display = 'none'; return; }
+    empty.style.display = 'none';
+    content.style.display = '';
+
+    document.getElementById('sumExp').textContent     = EXP_NAMES[state.experience] || '—';
+    document.getElementById('sumGuests').textContent  = state.guests + (state.guests === 1 ? ' guest' : ' guests');
+    document.getElementById('sumPrice').textContent   = state.pricePerPerson + ' TND';
+
+    const dateStr = state.date ? new Date(state.date + 'T12:00:00').toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'}) : '—';
+    document.getElementById('sumDate').textContent = dateStr;
+
+    const timeLabels = { morning:'Morning (9:00 AM)', afternoon:'Afternoon (2:00 PM)', evening:'Evening (6:00 PM)' };
+    document.getElementById('sumTime').textContent = state.time ? timeLabels[state.time] : 'Any time';
+
+    const tripLabels = { solo:'Solo', couple:'Couple', family:'Family', friends:'Friends', corporate:'Corporate' };
+    document.getElementById('sumTrip').textContent = state.tripType ? tripLabels[state.tripType] : '—';
+
+    if (state.extras.length) {
+      document.getElementById('extrasRow').style.display = '';
+      document.getElementById('sumExtras').textContent = state.extras.length + ' selected';
+    } else {
+      document.getElementById('extrasRow').style.display = 'none';
+    }
+
+    const total = state.pricePerPerson * state.guests;
+    document.getElementById('sumTotal').textContent = total + ' TND';
+  }
+
+  /* ── Form submission ── */
+  document.getElementById('bookingForm').addEventListener('submit', e => {
+    e.preventDefault();
+    let valid = true;
+
+    const name  = document.getElementById('fullName');
+    const email = document.getElementById('email');
+    const age   = document.getElementById('age');
+
+    if (!name.value.trim() || name.value.trim().length < 2) {
+      markInvalid(name, 'fullNameError', 'Please enter your full name (min. 2 characters).');
+      valid = false;
+    } else { markValid(name, 'fullNameError'); }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+      markInvalid(email, 'emailError', 'Please enter a valid email address.');
+      valid = false;
+    } else { markValid(email, 'emailError'); }
+
+    if (!age.value || parseInt(age.value) < 18 || parseInt(age.value) > 99) {
+      markInvalid(age, 'ageError', 'You must be at least 18 years old to book.');
+      valid = false;
+    } else { markValid(age, 'ageError'); }
+
+    if (valid) showSuccessModal();
+  });
+
+  function markInvalid(el, errId, msg) {
+    el.classList.add('is-invalid'); el.classList.remove('is-valid');
+    const err = document.getElementById(errId);
+    if (err) { err.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + msg; err.classList.add('visible'); }
+  }
+  function markValid(el, errId) {
+    el.classList.remove('is-invalid'); el.classList.add('is-valid');
+    const err = document.getElementById(errId);
+    if (err) err.classList.remove('visible');
+  }
+
+  // Real-time validation on step 3 fields
+  ['fullName','email','age'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('blur', () => document.getElementById('bookingForm').dispatchEvent(new Event('validate-field', { bubbles: true })));
+  });
+
+  /* ── Modal ── */
+  function showSuccessModal() {
+    const ref = 'TNS-' + Math.random().toString(36).substr(2,6).toUpperCase();
+    document.getElementById('modalRef').textContent = 'REF: ' + ref;
+
+    const dateStr = state.date ? new Date(state.date + 'T12:00:00').toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'}) : 'TBD';
+    const timeLabels = { morning:'9:00 AM', afternoon:'2:00 PM', evening:'6:00 PM' };
+    const name = document.getElementById('fullName').value;
+
+    document.getElementById('modalDetails').innerHTML = `
+      <li><i class="fa-solid fa-user"></i> <strong>Name:</strong> ${name}</li>
+      <li><i class="fa-solid fa-compass"></i> <strong>Experience:</strong> ${EXP_NAMES[state.experience] || '—'}</li>
+      <li><i class="fa-solid fa-calendar"></i> <strong>Date:</strong> ${dateStr}</li>
+      <li><i class="fa-solid fa-clock"></i> <strong>Time:</strong> ${state.time ? timeLabels[state.time] : 'Any available'}</li>
+      <li><i class="fa-solid fa-users"></i> <strong>Guests:</strong> ${state.guests}</li>
+      <li><i class="fa-solid fa-coins"></i> <strong>Total:</strong> ${state.pricePerPerson * state.guests} TND</li>
+    `;
+
+    document.getElementById('bookingModal').classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  document.getElementById('bookingModal').addEventListener('click', e => {
+    if (e.target === document.getElementById('bookingModal')) closeModal();
+  });
+
+  function closeModal() {
+    document.getElementById('bookingModal').classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+
+})();
+
+  /* ── Page Loader ── */
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('page-loader');
+    if (loader) setTimeout(() => loader.classList.add('hidden'), 1800);
+  });
+
+  /* ── Mobile Nav Toggle ── */
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (navToggle && mobileMenu) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+  }
+</script>
+
+</body>
+</html>
